@@ -1,19 +1,18 @@
 #!/bin/bash
 
-# 1. Pull latest from GitHub
-echo "🔄 Syncing with GitHub (pulling latest changes)..."
+#!/bin/bash
+
+
+
+# Pull latest changes from origin
 git pull origin main
 
-# 2. Check for changes
-if [[ -n $(git status -s) ]]; then
-  echo "📦 Staging and committing your changes..."
-  git add .
-  git commit -m "$1"
-  
-  # 3. Push back to GitHub
-  echo "🚀 Pushing changes to GitHub..."
-  git push origin main
-  echo "✅ All done—GitHub is up to date!"
-else
-  echo "👌 No changes to commit. You're already in sync."
-fi
+# Stage all changes
+git add .
+
+# Commit with a timestamp message
+commit_msg="Auto-sync on $(date +"%Y-%m-%d %H:%M:%S")"
+git commit -m "$commit_msg"
+
+# Push to GitHub
+git push origin main
